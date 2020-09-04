@@ -1,0 +1,19 @@
+SELECT
+  $__timeGroupAlias("date", $__interval),
+  device->>'browser',
+  count(device->>'browser')
+FROM sample_analytics
+GROUP BY 1,2
+
+
+geonetwork
+export GOOGLE_APPLICATION_CREDENTIALS="/home/bigquery-api-nodejs/pollr-analytics-6d6bca14890d.json"
+
+SELECT
+  date AS "time",
+  device->>'browser' AS "device->>'browser'"
+FROM sample_analytics
+GROUP BY 1,2
+
+sudo curl -L “https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)” \
+ -o /usr/local/bin/docker-compose
